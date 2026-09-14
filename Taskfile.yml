@@ -1,0 +1,12 @@
+# https://taskfile.dev/docs/guide
+# https://taskfile.dev/reference/templating/
+version: '3'
+tasks:
+  default: go test ./...
+
+  b: |
+    go build -o bin/repo ./cmd/repo
+
+# go test ./...
+# go vet ./...
+# go run ./cmd/repo --help

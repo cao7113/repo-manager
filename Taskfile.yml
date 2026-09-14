@@ -5,7 +5,33 @@ tasks:
   default: go test ./...
 
   b: |
-    go build -o bin/repo ./cmd/repo
+    go build -ldflags "-X main.version=$(cog get-version --fallback 0.0.0)" -o bin/repo ./cmd/repo
+
+  version:
+    cmds:
+      - cog get-version --tag --fallback 0.0.0
+
+  check:
+    cmds:
+      - cog check
+      - go test ./...
+      - go vet ./...
+
+  release:patch:
+    cmds:
+      - cog bump --patch
+
+  release:minor:
+    cmds:
+      - cog bump --minor
+
+  release:major:
+    cmds:
+      - cog bump --major
+
+  release:push:
+    cmds:
+      - git push origin main --follow-tags
 
 # go test ./...
 # go vet ./...

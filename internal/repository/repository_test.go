@@ -3,7 +3,7 @@ package repository
 import (
 	"testing"
 
-	"github.com/username/repo-manager/internal/config"
+	"github.com/cao7113/repo-manager/internal/config"
 )
 
 func TestAddRejectsDuplicatePathAndName(t *testing.T) {

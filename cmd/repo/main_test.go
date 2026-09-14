@@ -5,8 +5,15 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/username/repo-manager/internal/config"
+	"github.com/cao7113/repo-manager/internal/config"
 )
+
+func TestRootCommandReportsVersion(t *testing.T) {
+	command := newRootCommand()
+	if command.Version != version {
+		t.Fatalf("version = %q, want %q", command.Version, version)
+	}
+}
 
 func TestListCommandPrintsAlignedColumns(t *testing.T) {
 	state := &app{file: config.File{Repos: []config.RepoItem{

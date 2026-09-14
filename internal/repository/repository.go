@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/username/repo-manager/internal/config"
+	"github.com/cao7113/repo-manager/internal/config"
 )
 
 func Add(file *config.File, item config.RepoItem) error {

@@ -7,7 +7,45 @@
 ```bash
 go install ./cmd/repo
 repo --help
+repo --version
 ```
+
+开发版本显示为 `dev`，通过 GoReleaser 发布的二进制会显示对应的 Git tag 版本。
+
+### 发布版本
+
+版本号和 tag 使用本地 [Cocogitto](https://docs.cocogitto.io/) 管理，tag 格式为 `v1.2.3`。先执行检查，再选择版本增量：
+
+```bash
+task check
+task release:patch  # 或 task release:minor / task release:major
+task release:push
+```
+
+`cog bump` 会生成 changelog 提交并创建本地 `v*` tag；推送 tag 后，GitHub Actions 会自动调用 GoReleaser 创建 GitHub Release。也可以直接使用 `cog bump --version 1.2.3` 发布指定版本。
+
+### 使用 mise 安装
+
+发布版本可通过 mise 从 GitHub Releases 安装：
+
+```bash
+mise use -g 'github:cao7113/repo-manager'
+repo --help
+```
+
+升级到最新版本：
+
+```bash
+mise upgrade repo-manager
+```
+
+也可以直接安装指定版本：
+
+```bash
+mise use -g 'github:cao7113/repo-manager@v0.1.0'
+```
+
+首次使用 mise 时，请先参考 [mise 安装文档](https://mise.jdx.dev/getting-started.html) 完成安装，并确保 mise 已加入 shell 环境。
 
 默认配置文件是 `~/.config/repo-manager/repos.yaml`，也可以通过 `--config PATH` 或 `REPO_MANAGER_CONFIG` 指定。
 

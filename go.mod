@@ -1,4 +1,4 @@
-module github.com/username/repo-manager
+module github.com/cao7113/repo-manager
 
 go 1.26.6
 

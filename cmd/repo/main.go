@@ -9,16 +9,18 @@ import (
 	"strings"
 	"text/tabwriter"
 
+	"github.com/cao7113/repo-manager/internal/config"
+	"github.com/cao7113/repo-manager/internal/git"
+	"github.com/cao7113/repo-manager/internal/repository"
 	"github.com/spf13/cobra"
-	"github.com/username/repo-manager/internal/config"
-	"github.com/username/repo-manager/internal/git"
-	"github.com/username/repo-manager/internal/repository"
 )
 
 type app struct {
 	configPath string
 	file       config.File
 }
+
+var version = "dev"
 
 func main() {
 	if err := newRootCommand().Execute(); err != nil {
@@ -30,8 +32,9 @@ func main() {
 func newRootCommand() *cobra.Command {
 	state := &app{}
 	root := &cobra.Command{
-		Use:   "repo",
-		Short: "Manage local Git repositories",
+		Use:     "repo",
+		Short:   "Manage local Git repositories",
+		Version: version,
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 			path, err := config.Path()
 			if err != nil {

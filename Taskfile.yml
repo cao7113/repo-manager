@@ -8,3 +8,5 @@ tasks:
 
   b: |
     go build -ldflags "-X main.version=$(cog get-version --tag --fallback 0.0.0)" -o bin/repo ./cmd/repo
+
+  rel: cog bump --auto

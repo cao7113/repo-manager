@@ -7,7 +7,7 @@ builds:
     main: ./cmd/repo
     binary: repo
     ldflags:
-      - -s -w -X main.version={{.Version}}
+      - -s -w -X main.version={{.Tag}}
     goos:
       - linux
       - darwin
@@ -23,6 +23,9 @@ archives:
 
 checksum:
   name_template: 'checksums.txt'
+
+release:
+  name_template: 'v{{.Version}}'
 
 changelog:
   sort: asc

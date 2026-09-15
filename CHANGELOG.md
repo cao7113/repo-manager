@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.1.0 - 2026-09-15
+#### Features
+- add version subcommand - (80c6a72) - Ryn Cao
+#### Miscellaneous Chores
+- fix cog bump hook to use version_tag - (c71c20b) - Ryn Cao
+
+- - -
+
 ## v0.0.1 - 2026-09-14
 #### Miscellaneous Chores
 - add version and ci release workflow - (4454281) - Ryn Cao

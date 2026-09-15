@@ -9,9 +9,10 @@ import (
 )
 
 func Add(file *config.File, item config.RepoItem) error {
-	for _, existing := range file.Repos {
+	for index, existing := range file.Repos {
 		if existing.Path == item.Path {
-			return fmt.Errorf("repository already tracked: %s", item.Path)
+			file.Repos[index].URL = item.URL
+			return nil
 		}
 		if strings.EqualFold(existing.Name, item.Name) {
 			return fmt.Errorf("repository name already tracked: %s", item.Name)

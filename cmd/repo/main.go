@@ -52,8 +52,27 @@ func newRootCommand() *cobra.Command {
 		},
 	}
 	root.PersistentFlags().StringVar(&state.configPath, "config", "", "config file path")
-	root.AddCommand(newAddCommand(state), newCloneCommand(state), newListCommand(state), newShowCommand(state), newStatCommand(state))
+	root.AddCommand(
+		newAddCommand(state),
+		newCloneCommand(state),
+		newListCommand(state),
+		newShowCommand(state),
+		newStatCommand(state),
+		newVersionCommand(),
+	)
 	return root
+}
+
+func newVersionCommand() *cobra.Command {
+	return &cobra.Command{
+		Use:     "version",
+		Aliases: []string{"v"},
+		Short:   "Show the repo version",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			fmt.Fprintln(cmd.OutOrStdout(), version)
+			return nil
+		},
+	}
 }
 
 func newAddCommand(state *app) *cobra.Command {

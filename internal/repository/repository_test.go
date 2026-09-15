@@ -6,12 +6,16 @@ import (
 	"github.com/cao7113/repo-manager/internal/config"
 )
 
-func TestAddRejectsDuplicatePathAndName(t *testing.T) {
+func TestAddUpdatesURLForExistingPath(t *testing.T) {
 	file := config.File{Repos: []config.RepoItem{{Name: "one", Path: "/tmp/one"}}}
 
-	if err := Add(&file, config.RepoItem{Name: "two", Path: "/tmp/one"}); err == nil {
-		t.Fatal("expected duplicate path error")
+	if err := Add(&file, config.RepoItem{Name: "one", Path: "/tmp/one", URL: "https://example.com/one.git"}); err != nil {
+		t.Fatalf("update existing path: %v", err)
 	}
+	if len(file.Repos) != 1 || file.Repos[0].URL != "https://example.com/one.git" {
+		t.Fatalf("repos after update = %#v", file.Repos)
+	}
+
 	if err := Add(&file, config.RepoItem{Name: "ONE", Path: "/tmp/two"}); err == nil {
 		t.Fatal("expected duplicate name error")
 	}

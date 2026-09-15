@@ -15,6 +15,26 @@ func TestRootCommandReportsVersion(t *testing.T) {
 	}
 }
 
+func TestVersionCommand(t *testing.T) {
+	command := newRootCommand()
+	versionCommand, _, err := command.Find([]string{"v"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if versionCommand.Name() != "version" {
+		t.Fatalf("command name = %q, want %q", versionCommand.Name(), "version")
+	}
+
+	var output bytes.Buffer
+	versionCommand.SetOut(&output)
+	if err := versionCommand.RunE(versionCommand, nil); err != nil {
+		t.Fatal(err)
+	}
+	if got := strings.TrimSpace(output.String()); got != version {
+		t.Fatalf("version output = %q, want %q", got, version)
+	}
+}
+
 func TestListCommandPrintsAlignedColumns(t *testing.T) {
 	state := &app{file: config.File{Repos: []config.RepoItem{
 		{Name: "one", Path: "/tmp/one", URL: "https://github.com/org/one.git"},

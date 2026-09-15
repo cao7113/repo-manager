@@ -60,6 +60,8 @@ repo ls [query]
 repo l [query]
 repo show repo-name-or-path
 repo stat
+repo version
+repo v
 ```
 
 `repo clone URL [PATH]` 直接遵循 `git clone URL [PATH]` 的行为：不提供目标路径时由 Git 按默认规则创建目录。clone 成功后会自动加入追踪。

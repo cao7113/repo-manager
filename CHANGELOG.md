@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.1.1 - 2026-09-15
+#### Miscellaneous Chores
+- fix goreleaser tag with v prefix - (91db6db) - Ryn Cao
+
+- - -
+
 ## v0.1.0 - 2026-09-15
 #### Features
 - add version subcommand - (80c6a72) - Ryn Cao
